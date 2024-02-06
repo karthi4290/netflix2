@@ -10,7 +10,15 @@
 # Login Page
     - Built SignIn && SignUp UI
     - Added Conditional rendering
+# Firbase
+    - Configured firebase auth utilities(sign,signup,update,reset)
 # Redux
-  -
+  - Created Store and warapped around root app.
+  - Created UserSlice to store/update the user details(dispatch).
+  - Used useSelector & useDispatch hooks in App component.
+# Hooks
+  - Build custom hooks 
+  - 
+
     
 
