@@ -1,27 +1,21 @@
 import { useEffect } from 'react'
 import VideoBackGround from './VideoBackGround';
 import VideoTitle from './VideoTitle';
-import { NOWPLAYING_URL, TMDB_OPTIONS } from '../../../utils/constants';
+import useTrailer from '../../../hooks/useTrailer';
+
 
 const MainContainer = () => {
+  const {
+    fetchNowPlaying,
+  } = useTrailer();
 
-  const fetchNowPlaying = async () => {
-    try {
-      const response = await fetch(NOWPLAYING_URL, TMDB_OPTIONS);
-      const data = await response.json();
-      console.log(data.results);
-    } catch (error) {
-      console.log(error)
-    }
-
-
-  }
   useEffect(() => {
     fetchNowPlaying();
   }, [])
 
+
   return (
-    <div>
+    <div className="relative">
       <VideoBackGround />
       <VideoTitle />
     </div>
