@@ -1,14 +1,6 @@
 import React from 'react'
-import useTrailer from '../../../hooks/useTrailer';
 
-const VideoTitle = () => {
-  const {
-    isPlaying,
-    trailerDescription,
-    handlePlayFullScreen,
-    handlePause
-  } = useTrailer();
-  
+const VideoTitle = ({ handlePlayFullScreen, isPlaying, handlePause, trailerDescription }) => {
   return (
     <div className="text-white absolute px-24 top-[28%] ">
       <h1 className=" text-2xl md:text-6xl font-bold ">{trailerDescription?.title}</h1>

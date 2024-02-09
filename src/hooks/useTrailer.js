@@ -9,8 +9,7 @@ const useTrailer = () => {
     const trailerId = useSelector(store => store.movies.getTrailer);
     const trailerDescription = useSelector(store => store.movies.nowPlayingMovies);
 
-
-    const fetchBGTrailerPath = async (movieId) => {
+    const fetchBGTrailerId = async (movieId) => {
         const response = await fetch(TRAILER_URL + movieId + "/videos?language =en-US", TMDB_OPTIONS);
         const data = await response.json()
         const filterData = data.results.filter((result) => result.type === "Trailer");
@@ -27,7 +26,7 @@ const useTrailer = () => {
             const movieResult = moviesList[randomIndex];
             dispatch(addNowPlaying(movieResult));
 
-            await fetchBGTrailerPath(movieResult.id);
+            await fetchBGTrailerId(movieResult.id);
 
         } catch (error) {
             console.log(error)

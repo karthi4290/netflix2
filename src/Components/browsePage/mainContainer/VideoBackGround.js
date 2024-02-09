@@ -1,12 +1,8 @@
 import ReactPlayer from 'react-player';
 import { YOUTUBE_URL } from '../../../utils/constants';
-import useTrailer from '../../../hooks/useTrailer';
 
-const VideoBackGround = () => {
-  const {
-    isPlaying,
-    trailerId,
-  } = useTrailer();
+const VideoBackGround = ({ isPlaying,trailerId }) => {
+
 
   return (
     <div className="pl-14 bg-black h-[90vh]">
