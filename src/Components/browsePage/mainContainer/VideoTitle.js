@@ -2,7 +2,7 @@ import React from 'react'
 
 const VideoTitle = ({ handlePlayFullScreen, isPlaying, handlePause, trailerDescription }) => {
   return (
-    <div className="text-white absolute px-24 top-[28%] ">
+    <div className="text-white absolute px-20 top-[28%]">
       <h1 className=" text-2xl md:text-6xl font-bold ">{trailerDescription?.title}</h1>
       <p className="hidden md:inline-block py-6 text-lg w-1/4">{trailerDescription?.overview}</p>
       <div className="my-4 md:m-0">
