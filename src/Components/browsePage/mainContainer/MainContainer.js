@@ -11,7 +11,12 @@ const MainContainer = () => {
     trailerDescription,
     fetchNowPlaying,
     handlePlayFullScreen,
-    handlePause
+    handlePause,
+    isMoreInfo,
+    handleMoreInfo,
+    isvideoPlay,
+    handlePlay,
+    handleClose
   } = useTrailer();
 
   useEffect(() => {
@@ -22,7 +27,7 @@ const MainContainer = () => {
   return (
     <div className="relative">
       <VideoBackGround isPlaying={isPlaying} trailerId={trailerId} />
-      <VideoTitle handlePlayFullScreen={handlePlayFullScreen} isPlaying={isPlaying} handlePause={handlePause} trailerDescription={trailerDescription} />
+      <VideoTitle handlePlayFullScreen={handlePlayFullScreen} isPlaying={isPlaying} handlePause={handlePause} trailerDescription={trailerDescription} trailerId={trailerId} isMoreInfo={isMoreInfo} handleMoreInfo={handleMoreInfo} isvideoPlay={isvideoPlay} handlePlay={handlePlay} handleClose={handleClose} />
     </div>
   )
 }

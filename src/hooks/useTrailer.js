@@ -5,6 +5,8 @@ import { addNowPlaying, addTrailer } from '../utils/reduxStore/tmdbSlice';
 
 const useTrailer = () => {
     const [isPlaying, setIsPlaying] = useState(false);
+    const [isMoreInfo, setIsMoreInfo] = useState(false);
+    const [isvideoPlay, setIsVideoPlay] = useState(true);
     const dispatch = useDispatch();
     const trailerId = useSelector(store => store.movies.getTrailer);
     const trailerDescription = useSelector(store => store.movies.nowPlayingMovies);
@@ -41,8 +43,21 @@ const useTrailer = () => {
         }
     }
 
+    const handlePlay = () => {
+        setIsVideoPlay(true);
+    }
     const handlePause = () => {
         setIsPlaying(false);
+        setIsVideoPlay(false);
+    }
+    const handleClose = () => {
+        setIsMoreInfo(!isMoreInfo);
+        setIsVideoPlay(false);
+    }
+
+    const handleMoreInfo = () => {
+        setIsMoreInfo(!isMoreInfo);
+        setIsVideoPlay(true);
     }
 
     return {
@@ -51,7 +66,12 @@ const useTrailer = () => {
         trailerDescription,
         fetchNowPlaying,
         handlePlayFullScreen,
-        handlePause
+        handlePause,
+        isMoreInfo,
+        handleMoreInfo,
+        isvideoPlay,
+        handlePlay,
+        handleClose
     }
 
 
