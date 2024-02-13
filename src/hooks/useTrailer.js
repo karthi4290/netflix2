@@ -15,7 +15,7 @@ const useTrailer = () => {
         dispatch(addTrailer(trailer.key));
 
     }
-    const fetchNowPlaying = async () => {
+    const handleFetchNowPlaying = async () => {
         try {
             const response = await fetch(NOWPLAYING_URL, TMDB_OPTIONS);
             const data = await response.json();
@@ -59,7 +59,7 @@ const useTrailer = () => {
     }
 
     return {
-        fetchNowPlaying,
+        handleFetchNowPlaying,
         handlePlayFullScreen,
         handlePause,
         handleMoreInfo,

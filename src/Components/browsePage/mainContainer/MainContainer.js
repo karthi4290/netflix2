@@ -6,7 +6,7 @@ import useTrailer from '../../../hooks/useTrailer';
 
 const MainContainer = () => {
   const {
-    fetchNowPlaying,
+    handleFetchNowPlaying,
     handlePlayFullScreen,
     handlePause,
     handleMoreInfo,
@@ -15,7 +15,7 @@ const MainContainer = () => {
   } = useTrailer();
 
   useEffect(() => {
-    fetchNowPlaying();
+    handleFetchNowPlaying();
   }, [])
 
 
