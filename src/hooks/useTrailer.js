@@ -1,15 +1,11 @@
-import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { NOWPLAYING_URL, TMDB_OPTIONS, TRAILER_URL } from '../utils/constants';
 import { addNowPlaying, addTrailer } from '../utils/reduxStore/tmdbSlice';
+import { setIsPlaying, setIsVideoPopUpPlaying, setMoreInfo } from '../utils/reduxStore/configSlice';
 
 const useTrailer = () => {
-    const [isPlaying, setIsPlaying] = useState(false);
-    const [isMoreInfo, setIsMoreInfo] = useState(false);
-    const [isvideoPlay, setIsVideoPlay] = useState(true);
     const dispatch = useDispatch();
-    const trailerId = useSelector(store => store.movies.getTrailer);
-    const trailerDescription = useSelector(store => store.movies.nowPlayingMovies);
+    const { isMoreInfo } = useSelector(store => store.config)
 
     const fetchBGTrailerId = async (movieId) => {
         const response = await fetch(TRAILER_URL + movieId + "/videos?language =en-US", TMDB_OPTIONS);
@@ -38,38 +34,35 @@ const useTrailer = () => {
     const handlePlayFullScreen = () => {
         const player = document.getElementsByClassName('react-player')[0];
         if (player) {
-            setIsPlaying(true);
+            dispatch(setIsPlaying(true))
             player.requestFullscreen();
         }
     }
 
     const handlePlay = () => {
-        setIsVideoPlay(true);
+        dispatch(setIsVideoPopUpPlaying(true));
+
     }
     const handlePause = () => {
-        setIsPlaying(false);
-        setIsVideoPlay(false);
+        dispatch(setIsPlaying(false));
+        dispatch(setIsVideoPopUpPlaying(false));
     }
     const handleClose = () => {
-        setIsMoreInfo(!isMoreInfo);
-        setIsVideoPlay(false);
+        dispatch(setMoreInfo(!isMoreInfo))
+        dispatch(setIsVideoPopUpPlaying(false));
     }
 
     const handleMoreInfo = () => {
-        setIsMoreInfo(!isMoreInfo);
-        setIsVideoPlay(true);
+
+        dispatch(setMoreInfo(!isMoreInfo))
+        dispatch(setIsVideoPopUpPlaying(true));
     }
 
     return {
-        isPlaying,
-        trailerId,
-        trailerDescription,
         fetchNowPlaying,
         handlePlayFullScreen,
         handlePause,
-        isMoreInfo,
         handleMoreInfo,
-        isvideoPlay,
         handlePlay,
         handleClose
     }
@@ -78,4 +71,4 @@ const useTrailer = () => {
 }
 
 
-export default useTrailer
+export default useTrailer;

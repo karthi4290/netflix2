@@ -3,20 +3,22 @@ import ReactPlayer from 'react-player';
 import { FaPlay } from "react-icons/fa";
 import { CiPause1 } from "react-icons/ci";
 import { IoMdClose } from "react-icons/io";
+import { useSelector } from 'react-redux';
 
 
-const MoreInfoPopUp = ({ trailerId, trailerDescription, handlePause, isvideoPlay, handlePlay, handleClose }) => {
-
+const MoreInfoPopUp = ({ handlePause, handlePlay, handleClose }) => {
+    const { isVideoPopUpPlaying } = useSelector(store => store.config);
+    const trailerDescription = useSelector(store => store.movies.nowPlayingMovies);
+    const trailerId = useSelector(store => store.movies.getTrailer);
     return (
         <div className="z-50 transition duration-300 bg-black bg-opacity-85 flex justify-center items-center overflow-x-hidden overflow-y-auto fixed inset-0">
             <div className="relative w-[50%]  rounded-md overflow-hidden">
                 <div className="scale-100 transform duration-300 relative flex-auto bg-zinc-900 drop-shadow-md">
                     <div className="relative">
                         <ReactPlayer
-                            className="react-player"
                             url={`${YOUTUBE_URL}${trailerId}?si=${trailerId}`}
                             width="100%"
-                            playing={isvideoPlay}
+                            playing={isVideoPopUpPlaying}
                             config={{
                                 youtube: {
                                     playerVars: {
@@ -30,7 +32,7 @@ const MoreInfoPopUp = ({ trailerId, trailerDescription, handlePause, isvideoPlay
                         </div>
                         <div className="absolute bottom-[10%] left-10">
                             <div className="flex flex-row gap-4 items-center">
-                                <button>{isvideoPlay ? <CiPause1 onClick={handlePause} /> : <FaPlay onClick={handlePlay} />}</button>
+                                <button>{isVideoPopUpPlaying ? <CiPause1 onClick={handlePause} /> : <FaPlay onClick={handlePlay} />}</button>
                             </div>
                         </div>
                     </div>

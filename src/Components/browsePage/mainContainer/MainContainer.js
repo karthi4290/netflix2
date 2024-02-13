@@ -6,15 +6,12 @@ import useTrailer from '../../../hooks/useTrailer';
 
 const MainContainer = () => {
   const {
-    isPlaying,
     trailerId,
     trailerDescription,
     fetchNowPlaying,
     handlePlayFullScreen,
     handlePause,
-    isMoreInfo,
     handleMoreInfo,
-    isvideoPlay,
     handlePlay,
     handleClose
   } = useTrailer();
@@ -26,8 +23,8 @@ const MainContainer = () => {
 
   return (
     <div className="relative">
-      <VideoBackGround isPlaying={isPlaying} trailerId={trailerId} />
-      <VideoTitle handlePlayFullScreen={handlePlayFullScreen} isPlaying={isPlaying} handlePause={handlePause} trailerDescription={trailerDescription} trailerId={trailerId} isMoreInfo={isMoreInfo} handleMoreInfo={handleMoreInfo} isvideoPlay={isvideoPlay} handlePlay={handlePlay} handleClose={handleClose} />
+      <VideoBackGround  trailerId={trailerId} />
+      <VideoTitle handlePlayFullScreen={handlePlayFullScreen}  handlePause={handlePause} trailerDescription={trailerDescription} trailerId={trailerId}  handleMoreInfo={handleMoreInfo} handlePlay={handlePlay} handleClose={handleClose} />
     </div>
   )
 }
