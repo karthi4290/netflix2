@@ -8,8 +8,10 @@ import { useSelector } from 'react-redux';
 
 const MoreInfoPopUp = ({ handlePause, handlePlay, handleClose }) => {
     const { isVideoPopUpPlaying } = useSelector(store => store.config);
-    const trailerDescription = useSelector(store => store.movies.nowPlayingMovies);
+    const { getTrailerDetails } = useSelector(store => store.movies);
     const trailerId = useSelector(store => store.movies.getTrailer);
+    
+  
     return (
         <div className="z-50 transition duration-300 bg-black bg-opacity-85 flex justify-center items-center overflow-x-hidden overflow-y-auto fixed inset-0">
             <div className="relative w-[50%]  rounded-md overflow-hidden">
@@ -37,8 +39,8 @@ const MoreInfoPopUp = ({ handlePause, handlePlay, handleClose }) => {
                         </div>
                     </div>
                     <div className="px-12 py-8 ">
-                        <h1 className=" text-2xl md:text-6xl font-bold ">{trailerDescription?.title}</h1>
-                        <p className="text-white text-lg mt-3">{trailerDescription?.overview}</p>
+                        <h1 className=" text-2xl md:text-6xl font-bold ">{getTrailerDetails.title}</h1>
+                        <p className="text-white text-lg mt-3">{getTrailerDetails.overview}</p>
 
                     </div>
                 </div>
