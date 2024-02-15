@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { NOWPLAYING_URL, TMDB_OPTIONS, TRAILER_URL } from '../utils/constants';
-import { addNowPlaying, addTrailer } from '../utils/reduxStore/tmdbSlice';
+import { addNowPlaying, addTrailer, addTrailerDetails } from '../utils/reduxStore/tmdbSlice';
 import { setIsPlaying, setIsVideoPopUpPlaying, setMoreInfo } from '../utils/reduxStore/configSlice';
 
 const useTrailer = () => {
@@ -20,10 +20,11 @@ const useTrailer = () => {
             const response = await fetch(NOWPLAYING_URL, TMDB_OPTIONS);
             const data = await response.json();
             const moviesList = data.results;
+            dispatch(addNowPlaying(moviesList));
             const randomIndex = Math.floor(Math.random() * moviesList.length);
             const movieResult = moviesList[randomIndex];
-            dispatch(addNowPlaying(movieResult));
-
+            dispatch(addTrailerDetails(movieResult));
+            console.log(movieResult);
             await fetchBGTrailerId(movieResult.id);
 
         } catch (error) {
