@@ -1,38 +1,10 @@
-import { useEffect, useRef, useState } from 'react';
+
 import Moviecard from './Moviecard';
 import { MdChevronLeft, MdChevronRight } from 'react-icons/md';
+import useScroll from '../../../hooks/useScroll';
 
 const MovieList = ({ movies, title }) => {
-  const [isScrollLeft, setIsScrollLeft] = useState(false);
-  const [isScrollRight, setIsScrollRight] = useState(true);
-  const sliderRef = useRef(null);
-
-  useEffect(() => {
-    const sliderCurrentRef = sliderRef.current;
-    const handleScroll = () => {
-      setIsScrollLeft(sliderCurrentRef.scrollLeft > 0);
-      setIsScrollRight(sliderCurrentRef.scrollLeft + sliderCurrentRef.offsetWidth < sliderCurrentRef.scrollWidth);
-    }
-
-    sliderCurrentRef.addEventListener('scroll', handleScroll);
-
-    return (() => sliderCurrentRef.removeEventListener('scroll', handleScroll));
-  }, [])
-
-
-
-
-  const handleNavigation = (direction) => {
-    const sliderCurrentRef = sliderRef.current;
-    const scrollAmount = sliderCurrentRef.offsetWidth;
-    console.log(scrollAmount)
-    if (direction === "left") {
-      sliderCurrentRef.scrollLeft -= scrollAmount;
-    } else {
-      sliderCurrentRef.scrollLeft += scrollAmount;
-    }
-  }
-
+  const { handleNavigation,isScrollLeft, isScrollRight,sliderRef } = useScroll();
   return (
     <div className="p-5 relative ">
       <h1 className="text-lg md:text-3xl py-4 text-white">{title}</h1>
