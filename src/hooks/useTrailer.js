@@ -24,7 +24,6 @@ const useTrailer = () => {
             const randomIndex = Math.floor(Math.random() * moviesList.length);
             const movieResult = moviesList[randomIndex];
             dispatch(addTrailerDetails(movieResult));
-            console.log(movieResult);
             await fetchBGTrailerId(movieResult.id);
 
         } catch (error) {
