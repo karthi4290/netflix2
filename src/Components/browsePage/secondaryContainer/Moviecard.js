@@ -42,12 +42,13 @@ const Moviecard = ({ posterPath, movieId }) => {
 <div>
     { isPlayCard &&
     <div className="z-50 transition duration-300 bg-black bg-opacity-55 flex justify-center items-center overflow-x-hidden overflow-y-auto fixed inset-0">
-      <div className="relative w-[50%]  rounded-md overflow-hidden">
+      <div className="relative w-[35%]  rounded-3xl overflow-hidden">
         <div className="scale-100 transform duration-300 relative flex-auto bg-zinc-900 drop-shadow-md">
           <div className="relative">
             <ReactPlayer
               url={`${YOUTUBE_URL}${trailerId}?si=${trailerId}`}
               width="100%"
+              height={"400px"}
               playing={true}
               config={{
                 youtube: {
@@ -63,7 +64,7 @@ const Moviecard = ({ posterPath, movieId }) => {
           </div>
           <div className="px-12 py-8 ">
                 <h1 className=" text-1xl md:text-4xl font-bold text-white ">{movieDetails.title}</h1>
-                <p className="text-white text-lg text-wrap mt-3 ">{movieDetails.overview}</p>
+                <p className="text-white text-base text-wrap mt-3 ">{movieDetails.overview}</p>
 
           </div>
         </div>
