@@ -14,7 +14,6 @@ const Moviecard = ({ posterPath, movieId }) => {
   const [movieDetails,setMovieDetails] = useState([]);
   const dispatch = useDispatch();
   const movies = useSelector(store => store.movies);
-  // const { getTrailerDetails } = useSelector(store => store.movies);
   const trailerId = movies.getTrailerCardKey;
   const handleClose = () => {
     setIsPlayCard(false);
@@ -65,7 +64,6 @@ const Moviecard = ({ posterPath, movieId }) => {
           <div className="px-12 py-8 ">
                 <h1 className=" text-1xl md:text-4xl font-bold text-white ">{movieDetails.title}</h1>
                 <p className="text-white text-base text-wrap mt-3 ">{movieDetails.overview}</p>
-
           </div>
         </div>
       </div>
