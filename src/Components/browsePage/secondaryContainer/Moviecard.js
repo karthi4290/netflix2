@@ -60,11 +60,6 @@ const Moviecard = ({ posterPath, movieId }) => {
             <div className="cursor-pointer absolute top-3 right-3 h-10 w-10 rounded-full text-white bg-black bg-opacity-80 flex items-center justify-center">
               <IoMdClose onClick={handleClose} />
             </div>
-            <div className="absolute bottom-[10%] left-10">
-              <div className="flex flex-row gap-4 items-center">
-                <button className='text-white'>play</button>
-              </div>
-            </div>
           </div>
           <div className="px-12 py-8 ">
                 <h1 className=" text-1xl md:text-4xl font-bold text-white ">{movieDetails.title}</h1>
