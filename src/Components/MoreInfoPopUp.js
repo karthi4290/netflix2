@@ -13,7 +13,7 @@ const MoreInfoPopUp = ({ handlePause, handlePlay, handleClose }) => {
 
     return (
         <div className="z-50 transition duration-300 bg-black bg-opacity-85 flex justify-center items-center overflow-x-hidden overflow-y-auto fixed inset-0">
-            <div className="relative w-[50%]  rounded-md overflow-hidden">
+            <div className="relative w-[35%]  rounded-3xl overflow-hidden">
                 <div className="scale-100 transform duration-300 relative flex-auto bg-zinc-900 drop-shadow-md">
                     <div className="relative">
                         <VideoPlayer trailerId={trailerId} playing={isVideoPopUpPlaying} height={"400px"} />
