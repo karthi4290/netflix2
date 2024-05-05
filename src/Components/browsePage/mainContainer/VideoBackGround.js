@@ -7,7 +7,7 @@ const VideoBackGround = () => {
 
   return (
     <div className="pl-14 bg-black h-[90vh]">
-      <VideoPlayer trailerId={trailerId} isPlaying={isPlaying} height={"100%"} />
+      <VideoPlayer trailerId={trailerId} playing={isPlaying} height={"100%"} />
     </div>
   )
 }

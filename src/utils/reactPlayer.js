@@ -4,6 +4,7 @@ import { YOUTUBE_URL } from './constants';
 const VideoPlayer = ({ trailerId, playing, height }) => {
     return (
         <ReactPlayer
+            className='react-player'
             url={`${YOUTUBE_URL}${trailerId}?si=${trailerId}`}
             width="100%"
             height={height}
