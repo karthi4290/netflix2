@@ -4,7 +4,7 @@ import { MdChevronLeft, MdChevronRight } from 'react-icons/md';
 import useScroll from '../../../hooks/useScroll';
 
 
-const MovieList = ({  movies, title }) => {
+const MovieList = ({ movies, title }) => {
   const { handleNavigation, isScrollLeft, isScrollRight, sliderRef } = useScroll();
 
   return (
@@ -17,8 +17,7 @@ const MovieList = ({  movies, title }) => {
       />}
       <div ref={sliderRef} id="slider" className="flex justify-center items-center overflow-y-hidden  scroll whitespace-nowrap scroll-smooth">
         {movies?.map((movie) => (
-
-          <Moviecard key={movie.id}  movieId={movie.id} posterPath={movie.poster_path} />
+          <Moviecard key={movie.id} movieId={movie.id} posterPath={movie.poster_path} />
         ))}
       </div>
       {isScrollRight && <MdChevronRight
