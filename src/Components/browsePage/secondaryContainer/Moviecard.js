@@ -1,10 +1,9 @@
 import { useState } from "react";
 import { POSTERPATH_URL, TMDB_OPTIONS, TRAILER_URL } from "../../../utils/constants";
 import { FaPlay } from "react-icons/fa";
-import { IoMdClose } from "react-icons/io";
 import { useDispatch, useSelector } from "react-redux";
 import { addTrailerCard } from '../../../utils/reduxStore/tmdbSlice';
-import VideoPlayer from "../../../utils/reactPlayer";
+import Popup from "../../Popup";
 
 
 
@@ -40,28 +39,15 @@ const Moviecard = ({ posterPath, movieId }) => {
   return (
     <div>
       {isPlayCard &&
-        <div className="z-50 transition duration-300 bg-black bg-opacity-55 flex justify-center items-center overflow-x-hidden overflow-y-auto fixed inset-0">
-          <div className="relative w-[35%]  rounded-3xl overflow-hidden">
-            <div className="scale-100 transform duration-300 relative flex-auto bg-zinc-900 drop-shadow-md">
-              <div className="relative">
-                <VideoPlayer trailerId={trailerId} playing={isPlayCard} height={'400px'} />
-                <div className="cursor-pointer absolute top-3 right-3 h-10 w-10 rounded-full text-white bg-black bg-opacity-80 flex items-center justify-center">
-                  <IoMdClose onClick={handleClose} />
-                </div>
-              </div>
-              <div className="px-12 py-8 ">
-                <h1 className=" text-1xl md:text-4xl font-bold text-white ">{movieDetails.title}</h1>
-                <p className="text-white text-base text-wrap mt-3 ">{movieDetails.overview}</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-      }
+        <Popup
+          trailerId={trailerId}
+          isVideoPopUpPlaying={isPlayCard}
+          getTrailerDetails={movieDetails}
+          handleClose={handleClose}
+        />}
       <div className=" w-36 md:w-[260px] p-1 inline-block cursor-pointer hover:scale-110 ease-in-out duration-300"
         onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => {
           setIsHovered(false)
-
         }}
       >
         <img className="rounded-md" alt="movieCard" src={POSTERPATH_URL + posterPath} />
@@ -69,8 +55,6 @@ const Moviecard = ({ posterPath, movieId }) => {
           <button onClick={() => handlePlayCard(movieId)} className="absolute inset-0 flex items-center justify-center">
             <FaPlay color="white" size={40} />
           </button>}
-
-
       </div>
 
     </div>
