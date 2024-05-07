@@ -12,7 +12,7 @@ const useTrailer = () => {
         const data = await response.json()
         const filterData = data.results.filter((result) => result.type === "Trailer");
         const trailer = filterData.length ? filterData[0] : data.results[0];
-        dispatch(addTrailer(trailer.key));
+        dispatch(addTrailer(trailer?.key));
 
     }
     const handleFetchNowPlaying = async () => {

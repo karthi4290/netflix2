@@ -18,14 +18,10 @@ const Moviecard = ({ posterPath, movieId }) => {
     setIsPlayCard(false);
   }
 
-  const fetchTrailerId = async (movieId) => {
-    fetchBGTrailerId(movieId)
-  }
-
 
 
   const handlePlayCard = async (movieId) => {
-    await fetchTrailerId(movieId);
+    await fetchBGTrailerId(movieId);
     const { title, overview } = movies.nowPlayingMovies.find(movie => movie.id === movieId);
     setMovieDetails({ title: title, overview: overview });
     setIsPlayCard(true);
