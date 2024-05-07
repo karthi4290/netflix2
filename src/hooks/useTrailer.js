@@ -64,7 +64,8 @@ const useTrailer = () => {
         handlePause,
         handleMoreInfo,
         handlePlay,
-        handleClose
+        handleClose,
+        fetchBGTrailerId
     }
 
 

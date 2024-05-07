@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { POSTERPATH_URL, TMDB_OPTIONS, TRAILER_URL } from "../../../utils/constants";
+import { POSTERPATH_URL } from "../../../utils/constants";
 import { FaPlay } from "react-icons/fa";
-import { useDispatch, useSelector } from "react-redux";
-import { addTrailerCard } from '../../../utils/reduxStore/tmdbSlice';
 import Popup from "../../Popup";
+import useTrailer from "../../../hooks/useTrailer";
+import { useSelector } from "react-redux";
 
 
 
@@ -11,25 +11,21 @@ const Moviecard = ({ posterPath, movieId }) => {
   const [isPlayCard, setIsPlayCard] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
   const [movieDetails, setMovieDetails] = useState([]);
-  const dispatch = useDispatch();
   const movies = useSelector(store => store.movies);
-  const trailerId = movies.getTrailerCardKey;
+  const trailerId = movies.getTrailer;
+  const { fetchBGTrailerId } = useTrailer();
   const handleClose = () => {
     setIsPlayCard(false);
   }
 
-  const fetchBGTrailerId = async (movieId) => {
-    const response = await fetch(TRAILER_URL + movieId + "/videos?language =en-US", TMDB_OPTIONS);
-    const data = await response.json();
-    const filterData = data.results.filter((result) => result.type === "Trailer");
-    const trailer = filterData.length ? filterData[0] : data.results[0];
-    dispatch(addTrailerCard(trailer.key));
+  const fetchTrailerId = async (movieId) => {
+    fetchBGTrailerId(movieId)
   }
 
 
 
   const handlePlayCard = async (movieId) => {
-    await fetchBGTrailerId(movieId);
+    await fetchTrailerId(movieId);
     const { title, overview } = movies.nowPlayingMovies.find(movie => movie.id === movieId);
     setMovieDetails({ title: title, overview: overview });
     setIsPlayCard(true);
