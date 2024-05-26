@@ -13,7 +13,7 @@ const Popup = ({ trailerId, isVideoPopUpPlaying, getTrailerDetails, handlePause,
                         <div className="cursor-pointer absolute top-3 right-3 h-10 w-10 rounded-full text-white bg-black bg-opacity-80 flex items-center justify-center">
                             <IoMdClose onClick={handleClose} />
                         </div>
-                        <div className="absolute bottom-[10%] left-10">
+                        <div className="absolute bottom-[10%] bg-red-700 left-10">
                             <div className="flex flex-row gap-4 items-center">
                                 <button>{isVideoPopUpPlaying ? <CiPause1 onClick={handlePause} /> : <FaPlay onClick={handlePlay} />}</button>
                             </div>

@@ -11,21 +11,29 @@ const Moviecard = ({ posterPath, movieId }) => {
   const [isPlayCard, setIsPlayCard] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
   const [movieDetails, setMovieDetails] = useState([]);
+  const [isVideoPopUpPlaying, setIsVideoPopUpPlaying] = useState(false);
   const movies = useSelector(store => store.movies);
   const trailerId = movies.getTrailer;
   const { fetchBGTrailerId } = useTrailer();
   const handleClose = () => {
     setIsPlayCard(false);
   }
+  const handlePause = () => {
+    setIsVideoPopUpPlaying(false)
+  }
+  const handlePlay = () => {
+    setIsPlayCard(true);
+    setIsVideoPopUpPlaying(true)
+  }
 
 
 
-  const handlePlayCard = async (movieId) => {
+  const fetchTrailer = async (movieId) => {
     await fetchBGTrailerId(movieId);
     const { title, overview } = movies.nowPlayingMovies.find(movie => movie.id === movieId);
     setMovieDetails({ title: title, overview: overview });
     setIsPlayCard(true);
-
+    setIsVideoPopUpPlaying(true);
   }
 
   return (
@@ -33,9 +41,11 @@ const Moviecard = ({ posterPath, movieId }) => {
       {isPlayCard &&
         <Popup
           trailerId={trailerId}
-          isVideoPopUpPlaying={isPlayCard}
+          isVideoPopUpPlaying={isVideoPopUpPlaying}
           getTrailerDetails={movieDetails}
           handleClose={handleClose}
+          handlePause={handlePause}
+          handlePlay={handlePlay}
         />}
       <div className=" w-36 md:w-[260px] p-1 inline-block cursor-pointer hover:scale-110 ease-in-out duration-300"
         onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => {
@@ -44,7 +54,7 @@ const Moviecard = ({ posterPath, movieId }) => {
       >
         <img className="rounded-md" alt="movieCard" src={POSTERPATH_URL + posterPath} />
         {isHovered &&
-          <button onClick={() => handlePlayCard(movieId)} className="absolute inset-0 flex items-center justify-center">
+          <button onClick={() => fetchTrailer(movieId)} className="absolute inset-0 flex items-center justify-center">
             <FaPlay color="white" size={40} />
           </button>}
       </div>
